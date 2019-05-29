@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="description" content="Datalakes visualisation.">
+<meta name="author" content="Datalakes">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript"
+  src="js/dygraph.min.js"></script>
+<link rel="stylesheet" src="css/dygraph.css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<title>Thetis Data Sandbox | Datalakes</title>
+</head>
+
+<body>
+	
+<!-- Loading -->
+    
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div id="loader-text">Loading Data.</div>
+</div>
+	
+<!-- Header -->
+    
+ <header>
+    <div class="wrapper ">
+		<table style="width:100%;">
+			<tr>
+				<td>
+					<img class="logo" src="img/logo.jpg">
+				</td>
+				<td style="text-align:right;">
+					<h1>Thetis Data Sandbox</h1>
+				</td>
+			</tr>
+		
+		</table>
+	 </div>
+</header>
+	
+<div class="page">
+	<div class="content">
+		<div class="inner">
+			<table style="width:100%;border-collapse:collapse;margin-bottom: 50px;">
+				<tr>
+					<td style="width:100px;">
+						<img class="sensor_size" src="img/sensor.png">
+					</td>
+					<td style="text-align:right;">
+						<select id="dataset1" name="dataset1" class="sel" title="Click to edit data source 1">
+							<option id="option1_Temperature_3h" value="Temperature_3h" selected>Temperature [°C]</option>
+							<option id="option1_O2_3h" value="O2_3h">Dissolved Oxygen [mg.L-1]</option>
+							<option id="option1_CHLA_3h" value="CHLA_3h">Chlorophyll a [ug.L-1]</option>
+							<option id="option1_CDOM_3h" value="CDOM_3h">Chromophoric Dissolved Organic Matter (CDOM) [ppb]</option>
+							<option id="option1_PAR_3h" value="PAR_3h">Photosynthetically Available Radiations PAR [umol phot.m-2.s-1]</option>
+							<option id="option1_b440_3h" value="b440_3h">Light Backscattering (440nm) [m-1]</option>
+							<option id="option1_b700_3h" value="b700_3h">Light Backscattering (700nm) [m-1]</option>
+						</select>
+						<select id="dataset2" name="dataset2" class="sel" title="Click to edit data source 2">
+							<option id="option2_Temperature_3h" value="Temperature_3h">Temperature [°C]</option>
+							<option id="option2_O2_3h" value="O2_3h" selected>Dissolved Oxygen [mg.L-1]</option>
+							<option id="option2_CHLA_3h" value="CHLA_3h">Chlorophyll a [ug.L-1]</option>
+							<option id="option2_CDOM_3h" value="CDOM_3h">Chromophoric Dissolved Organic Matter (CDOM) [ppb]</option>
+							<option id="option2_PAR_3h" value="PAR_3h">Photosynthetically Available Radiations PAR [umol phot.m-2.s-1]</option>
+							<option id="option2_b440_3h" value="b440_3h">Light Backscattering (440nm) [m-1]</option>
+							<option id="option2_b700_3h" value="b700_3h">Light Backscattering (700nm) [m-1]</option>
+						</select>
+					</td>
+				</tr>
+				<tr style="border-top:2px solid black;">
+					<td>
+						<div id="slider">
+						  <div id="custom-handle" title="Slide to adjust depth" class="ui-slider-handle"></div>
+						</div>
+					</td>
+					<td>
+						<div id="vertical" class="vertical"></div>
+						<div style="display: inline-block;">
+							<table>
+							<tr>
+								<td>Depth [m]:</td>
+								<td><div id="depth"></div></td>
+							</tr>
+							
+							</table>
+						
+						
+						
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<table>
+						<tr>
+							<td colspan="3" style="width:400px;"><hr></td>
+							<td rowspan="2" style="vertical-align:top;"><div id="y1" style="color:red;display:inline-block;"></div>:<div style="color:red;display:inline-block;padding-left:15px;" id="l1"></div><div style="font-size:12px;" id="date1"></div></td>
+						</tr>
+						<tr style="font-size:12px;height:14px;">
+							<td><div id="y1_0"></div></td>
+							<td style="text-align:center"><div id="y1_1"></div></td>
+							<td style="text-align:right"><div id="y1_2"></div></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="width:400px;"><hr></td>
+							<td rowspan="2" style="vertical-align:top;"><div id="y2" style="display:inline-block;"></div>:<div style="display:inline-block;padding-left:15px;" id="l2"></div><div style="font-size:12px;" id="date2"></div></td>
+						</tr>
+						<tr style="font-size:12px;height:14px;">
+							<td><div id="y2_0"></div></td>
+							<td style="text-align:center"><div id="y2_1"></div></td>
+							<td style="text-align:right"><div id="y2_2"></div></td>
+						</tr>
+						</table>
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><div style="width:50%;display:inline-block;" id="ax1"></div><div style="width:50%;display:inline-block;text-align:right;" id="ax2"></div></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;padding-top:10px;" colspan="2">
+						<div id="horizontal" style="width: 100%; height: 150px;" title="Click on the timeline to adjust the depth plot. Drag to zoom. Double click to reset graph."></div>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding-left:55px;" colspan="2">
+						Date: <div id="date" style="display:inline-block;width:200px;"></div><br>
+						<div id="hy1" style="color:red;display:inline-block;"></div>:<div style="color:red;display:inline-block;padding-left:15px;" id="h1"></div><br>
+						<div id="hy2" style="display:inline-block;"></div>:<div style="display:inline-block;padding-left:15px;" id="h2"></div>
+					</td>
+				</tr>
+				<div id="date_hidden" style="display:none;"></div>
+			</table>
+		</div>
+	</div>
+</div>
+	
+</body>
+<script src="js/visualise.js"></script>
+</html>
