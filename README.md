@@ -1,5 +1,6 @@
-# datalakes
-Thetis Data Sandbox
+# Thetis Data Sandbox
 
-Link to Site https://jamesrunnalls.com/datalakes/
+A one day exercise to build a web app capable of interatively displaying data from the Thetis instrument onboard the Lexplore platform on Lake Geneva. 
+
+Link to live version https://jamesrunnalls.com/datalakes/
 
